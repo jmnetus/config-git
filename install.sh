@@ -33,7 +33,12 @@ link_item "$SCRIPT_DIR/.local/share/kwin/scripts/hide-application" "$DATA_DIR/kw
 # 2. Symlink KWin window rules
 link_item "$SCRIPT_DIR/.config/kwinrulesrc" "$CONFIG_DIR/kwinrulesrc"
 
-# 3. Configure KWin plugin and shortcut
+# 3. Symlink Konsole configuration & profiles
+link_item "$SCRIPT_DIR/.local/share/konsole" "$DATA_DIR/konsole"
+link_item "$SCRIPT_DIR/.config/konsolerc" "$CONFIG_DIR/konsolerc"
+link_item "$SCRIPT_DIR/.config/konsolesshconfig" "$CONFIG_DIR/konsolesshconfig"
+
+# 4. Configure KWin plugin and shortcut
 KWRITECONFIG=""
 if command -v kwriteconfig6 >/dev/null 2>&1; then
     KWRITECONFIG="kwriteconfig6"
@@ -49,7 +54,7 @@ else
     echo "  [WARN] Neither kwriteconfig6 nor kwriteconfig5 found; please ensure hide-application is enabled in kwinrc"
 fi
 
-# 4. Reload KWin and shortcuts if running
+# 5. Reload KWin and shortcuts if running
 echo "==> Reloading KWin and shortcuts..."
 qdbus org.kde.kglobalaccel /kglobalaccel org.kde.KGlobalAccel.reloadConfig 2>/dev/null || \
 gdbus call --session --dest org.kde.kglobalaccel --object-path /kglobalaccel --method org.kde.KGlobalAccel.reloadConfig >/dev/null 2>&1 || true
