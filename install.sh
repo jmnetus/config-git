@@ -37,6 +37,7 @@ link_item "$SCRIPT_DIR/.config/kwinrulesrc" "$CONFIG_DIR/kwinrulesrc"
 link_item "$SCRIPT_DIR/.local/share/konsole" "$DATA_DIR/konsole"
 link_item "$SCRIPT_DIR/.config/konsolerc" "$CONFIG_DIR/konsolerc"
 link_item "$SCRIPT_DIR/.config/konsolesshconfig" "$CONFIG_DIR/konsolesshconfig"
+link_item "$SCRIPT_DIR/.config/kglobalshortcutsrc" "$CONFIG_DIR/kglobalshortcutsrc"
 
 # 4. Configure KWin plugin and shortcut
 KWRITECONFIG=""
@@ -49,7 +50,7 @@ fi
 if [ -n "$KWRITECONFIG" ]; then
     echo "==> Configuring KWin plugin and shortcut via $KWRITECONFIG"
     "$KWRITECONFIG" --file kwinrc --group Plugins --key hide-applicationEnabled true
-    "$KWRITECONFIG" --file kglobalshortcutsrc --group kwin --key HideCurrentApp "Meta+H,none,Hide Application (All Windows)"
+    # Shortcut configuration moved to version‑controlled kglobalshortcutsrc; symlinked above
 else
     echo "  [WARN] Neither kwriteconfig6 nor kwriteconfig5 found; please ensure hide-application is enabled in kwinrc"
 fi
