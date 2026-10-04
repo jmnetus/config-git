@@ -1,0 +1,18 @@
+{
+    "KPackageStructure": "KWin/Script",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "User"
+            }
+        ],
+        "Description": "Hide all windows of the active application (macOS Cmd+H style)",
+        "Icon": "preferences-system-windows",
+        "Id": "hide-application",
+        "License": "Unlicense",
+        "Name": "Hide Application",
+        "Version": "1.0"
+    },
+    "X-Plasma-API": "javascript",
+    "X-Plasma-MainScript": "code/main.js"
+}

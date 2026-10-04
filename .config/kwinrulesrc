@@ -1,0 +1,12 @@
+[0b2aa91a-bdda-48c6-8b3b-370489c3e098]
+description=Fix Thunderbird Icon and Grouping
+desktopfile=thunderbird
+desktopfilerule=3
+types=1
+wmclass=Thunderbird
+wmclasscomplete=false
+wmclassmatch=1
+
+[General]
+count=1
+rules=0b2aa91a-bdda-48c6-8b3b-370489c3e098
