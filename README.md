@@ -43,3 +43,33 @@ The script will:
 - Symlink Konsole profiles directory (`~/.local/share/konsole`) and configuration files (`~/.config/konsolerc`, `~/.config/konsolesshconfig`).
 - Automatically register and enable `hide-application` and `Meta+H` via `kwriteconfig6`.
 - Reload KWin and shortcuts live without requiring a restart or log out.
+
+## Additional Utilities
+
+These are standalone scripts not run by the main `install.sh` script.
+
+### SDDM HiDPI / Scale Sync (`sync-sddm-dpi.sh`)
+
+KDE Plasma Wayland does not automatically propagate display scaling or DPI to SDDM. This script automatically reads your current Wayland scale (via `kwinoutputconfig.json` / `kscreen-doctor`), calculates the matching font DPI, and writes or updates `/etc/sddm.conf.d/hidpi.conf`.
+
+#### Usage
+
+```bash
+# Preview detected scale and generated config without writing
+./sync-sddm-dpi.sh --dry-run
+
+# Check if SDDM config is currently in sync
+./sync-sddm-dpi.sh --check
+
+# Apply to /etc/sddm.conf.d/hidpi.conf (requests sudo/doas elevation only if needed)
+./sync-sddm-dpi.sh
+```
+
+#### Options
+
+- `-n`, `--dry-run`: Preview detected settings and generated configuration without writing.
+- `-c`, `--check`: Check if `/etc/sddm.conf.d/hidpi.conf` matches current scale (exit code 0 if in sync, 1 if mismatched).
+- `-s`, `--scale <val>`: Override scale factor manually (e.g. `1.5`, `2.0`).
+- `-d`, `--dpi <val>`: Override DPI manually (e.g. `144`).
+- `-o`, `--output <path>`: Write to custom path instead of `/etc/sddm.conf.d/hidpi.conf`.
+- `-f`, `--force`: Overwrite configuration even if already matching.
